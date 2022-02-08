@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct MatrixRainView: View {
-    
-    
     var body: some View {
         GeometryReader { geometry in
             let size = geometry.size
+            
             HStack(spacing: 15) {
                 ForEach(0...Int(size.width) / 25, id: \.self) { _ in
                     MatrixRainCharacters(size: size)
@@ -20,7 +19,6 @@ struct MatrixRainView: View {
             }
             .padding(.horizontal)
         }
-        
     }
 }
 
@@ -28,10 +26,14 @@ struct MatrixRainCharacters: View {
     @State private var isStarted = false
     @State private var random = 0
     
+    private let constant = "а1б2в3г4д5е6ё7ж8з9и0клмнопрстуфхцчшщъыьэюя"
+    
     let size: CGSize
     
     var body: some View {
-        let randomHeight: CGFloat = .random(in: (size.height / 2)...size.height)
+        let randomHeight: CGFloat = .random(
+            in: (size.height / 2)...size.height
+        )
         
         VStack {
             ForEach(0..<constant.count, id: \.self) { index in
@@ -88,4 +90,4 @@ struct MatrixRainView_Previews: PreviewProvider {
     }
 }
 
-private let constant = "а1б2в3г4д5е6ё7ж8з9и0клмнопрстуфхцчшщъыьэюя"
+
